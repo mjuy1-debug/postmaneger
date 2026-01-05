@@ -1,0 +1,19 @@
+{
+  "name": "courier-manager-server",
+  "version": "1.0.0",
+  "description": "Backend for Courier Management App",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "export-data": "node export_json.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
