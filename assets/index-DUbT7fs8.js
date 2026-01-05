@@ -9499,8 +9499,8 @@ const fetchData = async (district, startDate, endDate) => {
   try {
     if (!district || !startDate || !endDate) return [];
     let data = [];
-    console.log("Fetching static data from /data.json");
-    const response = await axios.get("/data.json");
+    console.log("Fetching static data from /data.json via BASE_URL");
+    const response = await axios.get(`${"/postmaneger/"}data.json`);
     if (Array.isArray(response.data)) {
       data = response.data.filter((item) => {
         const itemDate = item["날짜"];
@@ -9523,7 +9523,7 @@ const fetchStaffList = async (district) => {
   try {
     console.log(`Fetching staff list for district: ${district}`);
     if (!district) return [];
-    const response = await axios.get(`staff_list_${district}.json?t=${Date.now()}`);
+    const response = await axios.get(`${"/postmaneger/"}staff_list_${district}.json?t=${Date.now()}`);
     if (Array.isArray(response.data)) {
       return response.data;
     }
@@ -9535,7 +9535,7 @@ const fetchStaffList = async (district) => {
 };
 const fetchHolidays = async () => {
   try {
-    const response = await axios.get("/holidays.json");
+    const response = await axios.get(`${"/postmaneger/"}holidays.json`);
     return response.data;
   } catch (staticError) {
     console.error("Failed to fetch holidays from static file", staticError);
