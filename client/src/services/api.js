@@ -46,8 +46,8 @@ export const fetchData = async (district, startDate, endDate) => {
         */
 
         // 2. Fallback / Static Mode: Fetch data.json
-        console.log("Fetching static data from /data.json");
-        const response = await axios.get('/data.json');
+        console.log("Fetching static data from /data.json via BASE_URL");
+        const response = await axios.get(`${import.meta.env.BASE_URL}data.json`);
 
         if (Array.isArray(response.data)) {
             // Client-side filtering
@@ -83,7 +83,7 @@ export const fetchStaffList = async (district) => {
         if (!district) return [];
 
         // Use relative path (no leading slash) and add timestamp to bust cache
-        const response = await axios.get(`staff_list_${district}.json?t=${Date.now()}`);
+        const response = await axios.get(`${import.meta.env.BASE_URL}staff_list_${district}.json?t=${Date.now()}`);
 
         if (Array.isArray(response.data)) {
             return response.data;
@@ -111,7 +111,7 @@ export const fetchHolidays = async () => {
         */
 
         // 2. Fallback to static JSON
-        const response = await axios.get('/holidays.json');
+        const response = await axios.get(`${import.meta.env.BASE_URL}holidays.json`);
         return response.data;
     } catch (staticError) {
         console.error("Failed to fetch holidays from static file", staticError);
